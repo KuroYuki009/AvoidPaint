@@ -17,10 +17,10 @@ MonoBehaviour:
     atkPoint: 0
     hitsInvisible: 0
   - speed: 0.005
-    atkPoint: 10
+    atkPoint: 20
     hitsInvisible: 1
   - speed: 0
-    atkPoint: 20
+    atkPoint: 30
     hitsInvisible: 1
   - speed: 0
     atkPoint: 30

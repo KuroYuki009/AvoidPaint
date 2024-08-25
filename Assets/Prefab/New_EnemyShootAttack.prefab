@@ -111,7 +111,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4294935808
-  m_Size: 0.05
+  m_Size: 0.02
 --- !u!54 &8746219545841862704
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class GameSetting : MonoBehaviour
         //フレームレートを固定させる。
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
+
         Debug.Log("AwakeIn GameSettingSc!!");
 
         //マウスポインターの非表示、固定を行う。

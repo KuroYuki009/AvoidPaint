@@ -23,6 +23,7 @@ public class InGameManager : MonoBehaviour
     ////InGameCountTimer用変数
     //ゲーム内の制限時間。
     public float GameTimeCount;
+    public bool stopGameTimeSW;// true時、制限時間の経過を止める。
     [SerializeField] Text gametimecounterText;
 
     ////インスペクターからのアタッチ用。
@@ -121,6 +122,8 @@ public class InGameManager : MonoBehaviour
 
         if(StartingCount <= 3.0f && StartingCount >= 2.0f)//３...
         {
+            audioSource.loop = false;
+
             standbyCountDown_3.SetActive(true);
             //SEの再生
             if (countSE_SW[3] == false)
@@ -198,13 +201,19 @@ public class InGameManager : MonoBehaviour
             //SEの再生。BGM
             if (countSE_SW[4] == false)
             {
-                audioSource.PlayOneShot(audioClips[4]);
+                audioSource.loop = true;
+                audioSource.clip = audioClips[4];
+                audioSource.Play();
                 countSE_SW[4] = true;
             }
         }
 
-        //残り時間のカウントダウン。
-        GameTimeCount -= 1.0f * Time.deltaTime;
+        if(stopGameTimeSW == false)
+        {
+            //残り時間のカウントダウン。
+            GameTimeCount -= 1.0f * Time.deltaTime;
+        }
+
         //カウントダウンをアタッチしたUI.Textに代入する。
         gametimecounterText.text = string.Format("{0:0}", GameTimeCount);
 

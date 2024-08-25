@@ -13,7 +13,6 @@ public class EnemyBear : MonoBehaviour
     public float throwSpeed;// “Š‚°‚éŠ´Šo
     private void Start()
     {
-        Application.targetFrameRate = 60;
         StartCoroutine(BomShoot());
     }
 
