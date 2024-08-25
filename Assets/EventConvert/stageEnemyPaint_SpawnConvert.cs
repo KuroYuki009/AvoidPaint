@@ -6,19 +6,8 @@ public class stageEnemyPaint_SpawnConvert : MonoBehaviour
 {
     [SerializeField] EnemySpawnSc enemyspawnscr;
 
-    void Start()
+    public void EnemySpawn_paint()
     {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
-
-    void EnemySpawn_paint()
-    {
-        enemyspawnscr.SendMessage("PlayerStageInSpawn_paint");
+        enemyspawnscr.PlayerStageInSpawn_paint();
     }
 }

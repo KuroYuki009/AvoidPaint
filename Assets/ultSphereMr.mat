@@ -11,7 +11,6 @@ Material:
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _ALPHABLEND_ON
-  - _DETAIL_MULX2
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -28,7 +27,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
-        m_Texture: {fileID: 2800000, guid: e227c8e90b49cc240b30a65ee0d4a71a, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 8, y: 8}
         m_Offset: {x: 0, y: 0}
     - _DetailMask:
@@ -78,6 +77,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0, g: 0.96470594, b: 1, a: 0.2901961}
+    - _Color: {r: 0, g: 0.9647059, b: 1, a: 0.5254902}
     - _EmissionColor: {r: 0, g: 0.92158204, b: 1, a: 1}
   m_BuildTextureStacks: []

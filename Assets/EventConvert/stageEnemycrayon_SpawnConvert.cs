@@ -6,19 +6,8 @@ public class stageEnemycrayon_SpawnConvert : MonoBehaviour
 {
     [SerializeField] EnemySpawnSc enemyspawnscr;
 
-    void Start()
+    public void EnemySpawn_crayon()
     {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
-
-    void EnemySpawn_crayon()
-    {
-        enemyspawnscr.SendMessage("PlayerStageInSpawn_crayon");
+        enemyspawnscr.PlayerStageInSpawn_crayon();
     }
 }

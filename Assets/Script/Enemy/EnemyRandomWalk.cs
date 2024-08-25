@@ -14,14 +14,10 @@ public class EnemyRandomWalk : MonoBehaviour
     float randomHorizontal;
     bool randomRollSW;
 
-    turretQuo turretquo;
-
-    Vector3 cameraForward;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        turretquo = GetComponent<turretQuo>();
     }
 
     
@@ -72,4 +68,6 @@ public class EnemyRandomWalk : MonoBehaviour
     {
         
     }
+
+
 }

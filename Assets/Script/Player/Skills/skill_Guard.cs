@@ -45,6 +45,7 @@ public class skill_Guard : MonoBehaviour
 
         transparent = 0.0f;
         camFacsImage.color = new Color(1, 1, 1, transparent);
+
     }
 
 

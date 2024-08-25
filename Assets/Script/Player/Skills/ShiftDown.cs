@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class skill_ShiftDown : MonoBehaviour
+public class ShiftDown : MonoBehaviour
 {
     NewPlayerMove newPlayrMove;
     [SerializeField] float addSpeedValue;
     float localMoveSpeed;
+
     void Start()
     {
         newPlayrMove = GetComponent<NewPlayerMove>();
-        localMoveSpeed = newPlayrMove.moveSpeed;
+        float f = newPlayrMove.moveSpeed;
+        localMoveSpeed = f;
         addSpeedValue = 0.3f;
         
     }

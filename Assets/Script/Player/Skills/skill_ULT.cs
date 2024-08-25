@@ -20,29 +20,20 @@ public class skill_ULT : MonoBehaviour
     
     void Start()
     {
-        EnableReset();
+        ULT_ItemReset();
         ULT_Count1 = 0;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))// ULTボタンポチィ
+        if (Input.GetKeyDown(KeyCode.Q))// ULTの起動ボタン。
         {
-            /*if(ULT_Count1 >= 4)// ULTカウントが規定値以上にあったら
-            {
-                ULT_Count1 = 0;// カウントを0に戻す
-                StartCoroutine(ultScript.ULTooooo());
-            }*/
             if (ULT_Count1 >= 1 && ULT_Count2 >= 1 && ULT_Count3 >= 1 && ULT_Count4 >= 1)
             {
                 ultSphere.enabled = true;
-                EnableReset();
-                ULT_Count1 = 0;// カウントを0に戻す
-                ULT_Count2 = 0;
-                ULT_Count3 = 0;
-                ULT_Count4 = 0;
-                ultControllerScript.SendMessage("ULTooooo");
 
+                ultControllerScript.ULTooooo();// ultの処理を起動させる。
+                ULT_ItemReset();// 獲得したアイテムのリセット。
             }
 
         }
@@ -65,12 +56,18 @@ public class skill_ULT : MonoBehaviour
         }
     }
 
-    void EnableReset()
+    void ULT_ItemReset()// ウルトを使うのに必要な収集アイテムの初期化。またUIも無効化させる。
     {
+        ULT_Count1 = 0;
+        ULT_Count2 = 0;
+        ULT_Count3 = 0;
+        ULT_Count4 = 0;
+
         ui_ultGage_up.enabled = false;
         ui_ultGage_right.enabled = false;
         ui_ultGage_down.enabled = false;
         ui_ultGage_left.enabled = false;
+
     }
 
     private void OnCollisionEnter(Collision collision)

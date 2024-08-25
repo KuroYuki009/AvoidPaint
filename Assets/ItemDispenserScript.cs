@@ -31,7 +31,7 @@ public class ItemDispenserScript : MonoBehaviour
         while (true)
         {
             // プレハブの位置をランダムで設定
-            float x = Random.Range(-0.65f, 0.65f);
+            float x = Random.Range(-0.6f, 0.6f);
             float z = Random.Range(-0.5f, 0.5f);
             Vector3 pos = new Vector3(x, 1.0f, z);
 

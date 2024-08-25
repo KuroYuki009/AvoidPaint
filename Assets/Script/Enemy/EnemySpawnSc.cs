@@ -46,10 +46,12 @@ public class EnemySpawnSc : MonoBehaviour
 
     ////その他関数---
     //
-    int playerstageRondomNamber;
+    int enemySpawnInt;
     Vector3 playerstageSpawnVc3;
+
     void Start()
     {
+        // 一度だけシード値を秒数を元に設定する。
         Random.InitState(System.DateTime.Now.Millisecond);
     }
 
@@ -72,31 +74,17 @@ public class EnemySpawnSc : MonoBehaviour
                     ChairStageSpawn();
                     iventSW = true;
                     break;
-             /* case 3:
-                    PlayerStageCrayonCautionEffect();
-                    iventSW = true;
-                    break;
-                case 4:
-                    PlayerStageCrayonCautionEffect();
-                    iventSW = true;
-                    break; */
                 default:
                     //未選択時。
                     break;
             }
         }
-        
-        //試験的。押すと敵が沸く。
-        /* if (Input.GetButtonDown("Jump"))
-        {
-            ChairStageSpawn();
-            PlayerStageCautionEffect();
-        } */
-        if(iventTime <= 10.0f - difficultyLevel)
+
+        if(iventTime <= 10.0f - difficultyLevel)// イベントを発生させる際に使用する時間を計測する。
         {
             iventTime += 1.0f * Time.deltaTime;
         }
-        else if(iventTime >= 10.0f - difficultyLevel)
+        else if(iventTime >= 12.0f- difficultyLevel)// 目標の時間に達した場合、乱数で数値を割り出しそれに応じたイベントを実行する。
         {
             iventSW = false;
             randomizer = Random.Range(0, 3);//ランダマイザ―の範囲の選択
@@ -104,67 +92,55 @@ public class EnemySpawnSc : MonoBehaviour
             
         }
 
-        //自然時間からdifficultyレベルを設定する。難易度値が５以上の場合は増えない。
+        // 自然時間からdifficultyレベルを設定する。難易度値が５以上の場合は増えない。
         diffiRollTimer += Time.deltaTime * 1;
-        if(diffiRollTimer >= 10.0f && difficultyLevel <= 5)
+
+        if(diffiRollTimer >= 10.0f)
         {
-            difficultyLevel += 1;
+            if (difficultyLevel < 5) difficultyLevel += 1;
+
+            BearSpawnRefresh();
             diffiRollTimer = 0;
+
         }
         else if(diffiRollTimer >= 10.0f) diffiRollTimer = 0;
 
-        //difficultyが3以上だとクマがbombを投げてくるようになる。
-        if (difficultyLevel >= 5)
-        {
-            enemyObject_Bear_3.SetActive(true);
-        }
-        if (difficultyLevel >= 4)
-        {
-            enemyObject_Bear_2.SetActive(true);
-        }
-        if (difficultyLevel >= 3)
-        {
-            enemyObject_Bear_1.SetActive(true);
-        }
-
-        if(difficultyLevel <= 3)
-        {
-            enemyObject_Bear_1.SetActive(false);
-            enemyObject_Bear_2.SetActive(false);
-            enemyObject_Bear_3.SetActive(false);
-        }
-
     }
 
-    void PlayerStageCautionEffect()
+    void PlayerStageCautionEffect()// 敵を机の上に出現させるポイントを出力すると共に警告表示を再生させる。
     {
         //登録されている沸き場所指定用の空オブジェクトの数を取得し、そこからランダムな数字を割り出す。
-        playerstageRondomNamber = Random.Range(0, PlayerStageEnemySpawner.Length);
-        playerstageSpawnVc3 = PlayerStageEnemySpawner[playerstageRondomNamber].transform.position;
+        enemySpawnInt = Random.Range(0, PlayerStageEnemySpawner.Length);
+        playerstageSpawnVc3 = PlayerStageEnemySpawner[enemySpawnInt].transform.position;
+
         //割り出された数字を使いエフェクトを発生させる
-        PlayerStageEnemySpawner_cautionEffect[playerstageRondomNamber].SetTrigger("cautionEffect");
-        Debug.Log("机で沸きます");
-    }
-    void PlayerStageCrayonCautionEffect()
-    {
-        //登録されている沸き場所指定用の空オブジェクトの数を取得し、そこからランダムな数字を割り出す。
-        playerstageRondomNamber = Random.Range(0, PlayerStageCrayonEnemySpawner.Length);
-        playerstageSpawnVc3 = PlayerStageCrayonEnemySpawner[playerstageRondomNamber].transform.position;
-        //割り出された数字を使いエフェクトを発生させる
-        PlayerStageCrayonEnemySpawner_cautionEffect[playerstageRondomNamber].SetTrigger("cautionEffect");
+        PlayerStageEnemySpawner_cautionEffect[enemySpawnInt].SetTrigger("cautionEffect");
         Debug.Log("机で沸きます");
     }
 
-    public void PlayerStageInSpawn_paint()//プレイヤーの居るステージ上にスポーン。
+
+    void PlayerStageCrayonCautionEffect()// 
+    {
+        //登録されている沸き場所指定用の空オブジェクトの数を取得し、そこからランダムな数字を割り出す。
+        enemySpawnInt = Random.Range(0, PlayerStageCrayonEnemySpawner.Length);
+        playerstageSpawnVc3 = PlayerStageCrayonEnemySpawner[enemySpawnInt].transform.position;
+
+        //割り出された数字を使いエフェクトを発生させる
+        PlayerStageCrayonEnemySpawner_cautionEffect[enemySpawnInt].SetTrigger("cautionEffect");
+        Debug.Log("机で沸きます");
+    }
+
+    public void PlayerStageInSpawn_paint()// プレイヤーの居るステージ上に 絵の具を スポーン。
     {
         Instantiate(enemyObject_Paint, playerstageSpawnVc3, transform.rotation, playerstageExistenceEnemysObj.transform);
     }
-    public void PlayerStageInSpawn_crayon()//プレイヤーの居るステージ上にスポーン。
+
+    public void PlayerStageInSpawn_crayon()// プレイヤーの居るステージ上に クレヲンを スポーン。
     {
         Instantiate(enemyObject_Crayon, playerstageSpawnVc3, transform.rotation, playerstageExistenceEnemysObj.transform);
     }
-
-    public void ChairStageSpawn()//椅子の背もたれ上にスポーン。
+    
+    public void ChairStageSpawn()// 椅子の背もたれ上に 絵の具を スポーン。
     {
         int chairRondomNamber = Random.Range(0, ChairStageEnemySpawner.Length);
         Vector3 chairSpawnVc3 = ChairStageEnemySpawner[chairRondomNamber].transform.position;
@@ -172,4 +148,32 @@ public class EnemySpawnSc : MonoBehaviour
         Debug.Log("椅子に沸きます");
     }
 
+    public void BearSpawnRefresh()// クマの出現条件を満たしているかを確認する
+    {
+        //difficultyが3以上だとクマがbombを投げてくるようになる。
+        if (difficultyLevel >= 5)
+        {
+            enemyObject_Bear_1.SetActive(true);
+            enemyObject_Bear_2.SetActive(true);
+            enemyObject_Bear_3.SetActive(true);
+        }
+        else if (difficultyLevel >= 4)
+        {
+            enemyObject_Bear_1.SetActive(true);
+            enemyObject_Bear_2.SetActive(true);
+            enemyObject_Bear_3.SetActive(false);
+        }
+        else if (difficultyLevel >= 3)
+        {
+            enemyObject_Bear_1.SetActive(true);
+            enemyObject_Bear_2.SetActive(false);
+            enemyObject_Bear_3.SetActive(false);
+        }
+        else if (difficultyLevel <= 3)
+        {
+            enemyObject_Bear_1.SetActive(false);
+            enemyObject_Bear_2.SetActive(false);
+            enemyObject_Bear_3.SetActive(false);
+        }
+    }
 }
