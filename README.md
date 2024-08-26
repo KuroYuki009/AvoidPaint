@@ -60,7 +60,7 @@
 <br>
 一定のサイズまで大きくなったのを検出したら、メッシュのサイズをリセットし表示も無効化した後、消したオブジェクト数を元に制限時間へ追加の時間を加算しています。
 <br>
-(参照：[ウルトのスクリプト](https://github.com/KuroYuki009/AvoidPaint/blob/main/Assets/Script/Player/ULTController.cs))
+(参照：[アルティメットのスクリプト](https://github.com/KuroYuki009/AvoidPaint/blob/main/Assets/Script/Player/ULTController.cs))
 
 >#### __収集アイテム__
 
